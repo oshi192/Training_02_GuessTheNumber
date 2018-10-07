@@ -81,28 +81,24 @@ public class Game implements ConsoleColors {
     }
 
     private void printStatusBar(){
-        int position=0;
-        while(position < min*LENGTH_MAX/range){
+        for(int i =0;i< min*LENGTH_MAX/range;i++){
             System.out.print(" ");
-            position++;
         }
         System.out.print("V");
-        while(position < max*LENGTH_MAX/range){
+        for(int i= min*LENGTH_MAX/range+1;i < max*LENGTH_MAX/range;i++){
             System.out.print(" ");
-            position++;
         }
         System.out.println("V");
-        for(int i = 0;i<=min*LENGTH_MAX/range;i++){
-            System.out.print(GREEN+"#");
-        }
-        for(int i = min*LENGTH_MAX/range;i<max*LENGTH_MAX/range;i++){
-            System.out.print(RED+"#");
-        }
-        for(int i = max*LENGTH_MAX/range;i<=LENGTH_MAX;i++){
-            System.out.print(GREEN+"#");
+        for(int i = 0;i<=LENGTH_MAX;i++){
+           if(i<=min*LENGTH_MAX/range | i>=max*LENGTH_MAX/range) {
+               System.out.print(GREEN + "#");
+           }else{
+               System.out.print(RED+"#");
+           }
         }
         System.out.println(RESET);
     }
+
     public int getNumber(String s, int min, int max) {
         String input;
         System.out.print(s);
