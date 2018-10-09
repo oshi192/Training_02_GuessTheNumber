@@ -42,7 +42,7 @@ public class GameController implements GameConstants {
 
     private int getNumber( int min, int max) {
         String input;
-        View.printMessage(MESSAGE_ENTER_NUMBER);
+        View.printMessage(MESSAGE_ENTER_NUMBER + min +" - " +max +" :");
         while (true) {
             input = Reader.getString();
             if (input.matches("\\d+")) {
@@ -50,7 +50,7 @@ public class GameController implements GameConstants {
                     return Integer.parseInt(input);
                 }
             }
-            model.getInputs().add(INVALID + input + ERROR);
+            model.getInputs().add(INVALID + input);
             View.printMessage(INVALID_INPUT_MESSAGE + min + "-" + max);
         }
     }

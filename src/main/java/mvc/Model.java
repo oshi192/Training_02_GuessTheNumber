@@ -33,10 +33,10 @@ class Model implements GameConstants {
     void setMinOrMax(String value) {
         if (value.equals(IT_SMALLER)) {
             max = answer;
-            inputs.add(Integer.toString(answer) + LOWER);
+            inputs.add(Integer.toString(answer) + IT_SMALLER);
         } else {
             min = answer;
-            inputs.add(Integer.toString(answer) + BIGGER);
+            inputs.add(Integer.toString(answer) + IT_BIGGER);
         }
     }
 
