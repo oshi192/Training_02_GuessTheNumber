@@ -12,4 +12,4 @@ __UNIX__
 need installed [maven](https://maven.apache.org/install.html)
  - download or git clone
  - type in terminal where pom file locate: ```mvn package```
- - type ```java -jar target/.jar ```
+ - type ```java -jar target/GuessTheNumber-1.0-SNAPSHOT-jar-with-dependencies.jar ```
