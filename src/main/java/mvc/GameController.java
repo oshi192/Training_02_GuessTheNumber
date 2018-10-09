@@ -31,7 +31,7 @@ public class GameController implements GameConstants {
             if (model.getAnswer() > model.getAskNumer()) {
                 View.printMessage(IT_SMALLER);
                 model.setMinOrMax(IT_SMALLER);
-            } else if (model.getAnswer() > model.getAskNumer()) {
+            } else if (model.getAnswer() < model.getAskNumer()) {
                 View.printMessage(IT_BIGGER);
                 model.setMinOrMax(IT_BIGGER);
             } else {
