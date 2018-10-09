@@ -2,7 +2,7 @@ package util;
 
 import java.util.Scanner;
 
-public final class Reader {
+public final class Reader implements GameConstants{
     private static Scanner sc;
 
     private Reader() throws IllegalStateException {
@@ -15,11 +15,10 @@ public final class Reader {
         }
         return sc;
     }
-    public static  int getNumber(){
-        return getScanner().nextInt();
-    }
 
     public static String getString() {
         return getScanner().nextLine();
     }
+
+
 }
