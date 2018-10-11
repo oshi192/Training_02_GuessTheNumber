@@ -35,8 +35,8 @@ public class GameController implements GameConstants {
                 View.printMessage(IT_BIGGER);
                 model.setMinOrMax(IT_BIGGER);
             }
-            model.getInputs().add(Integer.toString(model.getAnswer()));
         }
+        model.getInputs().add(Integer.toString(model.getAnswer()));
     }
 
     /**
