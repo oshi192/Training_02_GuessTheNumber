@@ -5,8 +5,8 @@ import util.GameConstants;
 import java.util.List;
 
 class View implements GameConstants {
-    private View() {
-
+    private View() throws IllegalStateException {
+        throw new IllegalStateException("Can't create instance of mvc.View");
     }
 
     static void printMessage(String message) {
@@ -17,6 +17,12 @@ class View implements GameConstants {
         System.out.println("The number before " + min + " and " + max);
     }
 
+    /**
+     * displaying available diapason in general
+     * @param min - the lower value of available diapason
+     * @param max - the higher value of available diapason
+     * @param range - max length of general diapason on the screen (only for displaying)
+     */
     static void printStatusBar(int min, int max, int range) {
         for (int i = 0; i <= LENGTH_MAX; i++) {
             if (i <= min * LENGTH_MAX / range || i >= max * LENGTH_MAX / range) {
@@ -25,6 +31,7 @@ class View implements GameConstants {
                 System.out.print("#");
             }
         }
+        System.out.println();
     }
 
     static void printStatistics(List<String> inputs) {

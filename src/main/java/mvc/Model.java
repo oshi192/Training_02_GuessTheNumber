@@ -37,6 +37,10 @@ class Model implements GameConstants {
         return answer != askNumer;
     }
 
+    /**
+     * set min or max value depending on the 'value' strings
+     * @param value - string that the answer number higher or less
+     */
     void setMinOrMax(String value) {
         if (value.equals(IT_SMALLER)) {
             max = answer;

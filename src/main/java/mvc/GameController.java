@@ -39,6 +39,13 @@ public class GameController implements GameConstants {
         }
     }
 
+    /**
+     * reads number from console in range from min value to max
+     * if invalid entering - Viev displayed error message
+     * @param min - the lower value of range
+     * @param max - the higher value of range
+     * @return - valid value from range from min to max
+     */
     private int getNumberFromUser(int min, int max) {
         String input;
         View.printMessage(MESSAGE_ENTER_NUMBER + min + " - " + max + " :");
@@ -56,10 +63,12 @@ public class GameController implements GameConstants {
 
     private int rand(int min, int max) {
         int answer;
-        if (max >= min) {
+        if (max > min) {
             answer = random.nextInt(max - min) + min;
-        } else {
+        } else if (min > max) {
             answer = random.nextInt(min - max) + max;
+        } else {
+            answer = rand();
         }
         return answer;
     }
