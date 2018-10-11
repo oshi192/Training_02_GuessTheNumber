@@ -73,7 +73,7 @@ public class GameController implements GameConstants {
         return answer;
     }
 
-    public int rand() {
+    private int rand() {
         return random.nextInt(RAND_MAX);
     }
 
