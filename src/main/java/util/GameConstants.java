@@ -2,6 +2,7 @@ package util;
 
 public interface GameConstants {
       int RAND_MAX = 100;
+      int RAND_MIN = 100;
       int LENGTH_MAX = 80;
       String INVALID_INPUT_MESSAGE = "invalid input , try again. Only numbers: ";
       String MESSAGE_CONGRADULATION = " Right! it is my number! Congratulations!!";

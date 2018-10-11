@@ -26,8 +26,8 @@ public class GameController implements GameConstants {
 
     private void gameLoop() {
         while (model.isNumberNotEqualsAnswer()) {//
-            View.printPointersBar(model.getMin(), model.getMax(), model.getRange());
-            model.setAnswer(getNumber(model.getMin(), model.getMax()));
+            View.printStatusBar(model.getMin(), model.getMax(), model.getRange());
+            model.setAnswer(getNumberFromUser(model.getMin(), model.getMax()));
             if (model.getAnswer() > model.getAskNumer()) {
                 View.printMessage(IT_SMALLER);
                 model.setMinOrMax(IT_SMALLER);
@@ -40,7 +40,7 @@ public class GameController implements GameConstants {
         }
     }
 
-    private int getNumber( int min, int max) {
+    private int getNumberFromUser( int min, int max) {
         String input;
         View.printMessage(MESSAGE_ENTER_NUMBER + min +" - " +max +" :");
         while (true) {

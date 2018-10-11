@@ -14,16 +14,23 @@ class Model implements GameConstants {
     private List<String> inputs = new ArrayList();
 
     Model() {
-        min = 0;
-        max = 100;
+        min = RAND_MIN;
+        max = RAND_MAX;
         answer = 0;
         range = max - min;
     }
 
     Model(int min, int max) {
-        this.min = min;
-        this.max = max;
-        range = max - min;
+        if(min<max){
+            this.min = min;
+            this.max = max;
+            range = max - min;
+        } else {
+            this.min = max;
+            this.max = min;
+            range = min - max;
+        }
+
     }
 
     boolean isNumberNotEqualsAnswer() {
