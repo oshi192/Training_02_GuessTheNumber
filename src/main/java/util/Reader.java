@@ -2,7 +2,7 @@ package util;
 
 import java.util.Scanner;
 
-public final class Reader implements GameConstants{
+public final class Reader implements GameConstants {
     private static Scanner sc;
 
     private Reader() throws IllegalStateException {

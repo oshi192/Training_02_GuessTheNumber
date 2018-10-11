@@ -34,15 +34,14 @@ public class GameController implements GameConstants {
             } else if (model.getAnswer() < model.getAskNumer()) {
                 View.printMessage(IT_BIGGER);
                 model.setMinOrMax(IT_BIGGER);
-            } else {
-                model.getInputs().add(Integer.toString(model.getAnswer()));
             }
+            model.getInputs().add(Integer.toString(model.getAnswer()));
         }
     }
 
-    private int getNumberFromUser( int min, int max) {
+    private int getNumberFromUser(int min, int max) {
         String input;
-        View.printMessage(MESSAGE_ENTER_NUMBER + min +" - " +max +" :");
+        View.printMessage(MESSAGE_ENTER_NUMBER + min + " - " + max + " :");
         while (true) {
             input = Reader.getString();
             if (input.matches("\\d+")) {

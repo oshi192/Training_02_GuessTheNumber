@@ -4,7 +4,7 @@ import util.GameConstants;
 
 import java.util.List;
 
-public class View implements GameConstants {
+class View implements GameConstants {
     private View() {
 
     }
@@ -17,7 +17,7 @@ public class View implements GameConstants {
         System.out.println("The number before " + min + " and " + max);
     }
 
-    public static void printStatusBar(int min, int max, int range) {
+    static void printStatusBar(int min, int max, int range) {
         for (int i = 0; i <= LENGTH_MAX; i++) {
             if (i <= min * LENGTH_MAX / range || i >= max * LENGTH_MAX / range) {
                 System.out.print("-");

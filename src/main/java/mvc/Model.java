@@ -21,7 +21,7 @@ class Model implements GameConstants {
     }
 
     Model(int min, int max) {
-        if(min<max){
+        if (min < max) {
             this.min = min;
             this.max = max;
             range = max - min;
@@ -74,7 +74,6 @@ class Model implements GameConstants {
     void setAskNumer(int askNumer) {
         this.askNumer = askNumer;
     }
-
 
     void setAnswer(int answer) {
         this.answer = answer;
