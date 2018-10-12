@@ -7,20 +7,20 @@ import util.GameConstants;
 import java.util.ArrayList;
 import java.util.List;
 
-class Model implements GameConstants {
+public class Model implements GameConstants {
     private int askNumer;
     private int min;
     private int max;
     private int range;
     private List<Pair<String, String>> inputs = new ArrayList();
 
-    Model() {
+    public Model() {
         min = RAND_MIN;
         max = RAND_MAX;
         range = max - min;
     }
 
-    void setRangeBarrier(int min, int max) {
+    public void setRangeBarrier(int min, int max) {
         this.min = min;
         this.max = max;
     }
@@ -29,7 +29,7 @@ class Model implements GameConstants {
         return inputs;
     }
 
-    int getAskNumer() {
+    public int getAskNumer() {
         return askNumer;
     }
 
@@ -37,15 +37,15 @@ class Model implements GameConstants {
         return range;
     }
 
-    int getMin() {
+    public int getMin() {
         return min;
     }
 
-    int getMax() {
+    public int getMax() {
         return max;
     }
 
-    void generateAskNumer() {
+    public void generateAskNumer() {
         askNumer = (int) Math.ceil(Math.random() *
                 (max - min - 1) + min);
     }
