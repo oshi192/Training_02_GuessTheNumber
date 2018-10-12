@@ -6,7 +6,6 @@ import util.Reader;
 import java.util.Random;
 
 public class GameController implements GameConstants {
-    private static Random random = new Random();
 
     private Model model;
 
@@ -15,40 +14,43 @@ public class GameController implements GameConstants {
     }
 
     public void start() {
-        View.printMessage(MESSAGE_START);
-        View.printRangMessage(model.getMin(), model.getMax());
-        View.printMessage(MESSAGE_RULES);
-        model.setAskNumer(rand(model.getMin(), model.getMax()));
+        View.printMessage(View.START);
+        View.printMessage(View.THE_NUMBER_BEFORE + model.getMin() + View.AND + model.getMax());
+        View.printMessage(View.RULES);
+        model.setRangeBarrier(RAND_MIN,RAND_MAX);
+        model.generateAskNumer();
         gameLoop();
-        View.printMessage(MESSAGE_CONGRADULATION);
+        View.printMessage(View.CONGRADULATION);
         View.printStatistics(model.getInputs());
     }
 
     private void gameLoop() {
-        while (model.isNumberNotEqualsAnswer()) {//
+        while (model.checkValue(getNumberFromUser(model.getMin(),model.getMax())));
+       /* while (model.isNumberNotEqualsAnswer()) {//
             View.printStatusBar(model.getMin(), model.getMax(), model.getRange());
             model.setAnswer(getNumberFromUser(model.getMin(), model.getMax()));
             if (model.getAnswer() > model.getAskNumer()) {
-                View.printMessage(IT_SMALLER);
-                model.setMinOrMax(IT_SMALLER);
+                View.printMessage(View.IT_SMALLER);
+                model.setMinOrMax(View.IT_SMALLER);
             } else if (model.getAnswer() < model.getAskNumer()) {
-                View.printMessage(IT_BIGGER);
-                model.setMinOrMax(IT_BIGGER);
+                View.printMessage(View.IT_BIGGER);
+                model.setMinOrMax(View.IT_BIGGER);
             }
         }
-        model.getInputs().add(Integer.toString(model.getAnswer()));
+        model.getInputs().add(Integer.toString(model.getAnswer()));*/
     }
 
     /**
      * reads number from console in range from min value to max
      * if invalid entering - Viev displayed error message
+     *
      * @param min - the lower value of range
      * @param max - the higher value of range
      * @return - valid value from range from min to max
      */
     private int getNumberFromUser(int min, int max) {
         String input;
-        View.printMessage(MESSAGE_ENTER_NUMBER + min + " - " + max + " :");
+        View.printMessage(View.ENTER_NUMBER + min + " - " + max + " :");
         while (true) {
             input = Reader.getString();
             if (input.matches("\\d+")) {
@@ -56,25 +58,9 @@ public class GameController implements GameConstants {
                     return Integer.parseInt(input);
                 }
             }
-            model.getInputs().add(INVALID + input);
-            View.printMessage(INVALID_INPUT_MESSAGE + min + "-" + max);
+            model.getInputs().add(View.INVALID + input);
+            View.printMessage(View.INVALID_INPUT + min + "-" + max);
         }
-    }
-
-    private int rand(int min, int max) {
-        int answer;
-        if (max > min) {
-            answer = random.nextInt(max - min) + min;
-        } else if (min > max) {
-            answer = random.nextInt(min - max) + max;
-        } else {
-            answer = rand();
-        }
-        return answer;
-    }
-
-    private int rand() {
-        return random.nextInt(RAND_MAX);
     }
 
 }

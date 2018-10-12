@@ -20,17 +20,9 @@ class Model implements GameConstants {
         range = max - min;
     }
 
-    Model(int min, int max) {
-        if (min < max) {
-            this.min = min;
-            this.max = max;
-            range = max - min;
-        } else {
-            this.min = max;
-            this.max = min;
-            range = min - max;
-        }
-
+    void setRangeBarrier(int min,int max) {
+        this.min = min;
+        this.max =max;
     }
 
     boolean isNumberNotEqualsAnswer() {
@@ -42,13 +34,27 @@ class Model implements GameConstants {
      * @param value - string that the answer number higher or less
      */
     void setMinOrMax(String value) {
-        if (value.equals(IT_SMALLER)) {
+        if (value.equals(View.IT_SMALLER)) {
             max = answer;
-            inputs.add(Integer.toString(answer) + IT_SMALLER);
+            inputs.add(Integer.toString(answer) + View.IT_SMALLER);
         } else {
             min = answer;
-            inputs.add(Integer.toString(answer) + IT_BIGGER);
+            inputs.add(Integer.toString(answer) + View.IT_BIGGER);
         }
+    }
+    boolean checkValue(int value){
+        boolean isNotEquals = true;
+        if (value > askNumer) {
+            max = value;
+            inputs.add(Integer.toString(answer) + View.IT_SMALLER);
+        } else if (value < askNumer) {
+            min =value ;
+            inputs.add(Integer.toString(answer) + View.IT_BIGGER);
+        } else {
+            isNotEquals = false;
+            inputs.add(Integer.toString(answer));
+        }
+        return isNotEquals;
     }
 
     List<String> getInputs() {
@@ -75,8 +81,9 @@ class Model implements GameConstants {
         return max;
     }
 
-    void setAskNumer(int askNumer) {
-        this.askNumer = askNumer;
+    void generateAskNumer() {
+        askNumer = (int)Math.ceil(Math.random()*
+                (max- min - 1) + min);
     }
 
     void setAnswer(int answer) {
