@@ -22,12 +22,19 @@ public class GameController implements GameConstants {
     }
 
     private void gameLoop() {
-        while (checkValue(getNumberFromUser(model.getMin(), model.getMax()))) {
+        while (compareValue(getNumberFromUser(model.getMin(), model.getMax()))) {
             View.printStatusBar(model.getMin(), model.getMax(), model.getRange());
         }
     }
 
-    boolean checkValue(int value) {
+    /**
+     * compare parameter value to askNumber in model
+     * and add values to models.inputList
+     *
+     * @param value - value to compare
+     * @return - if they not equals return true
+     */
+    private boolean compareValue(int value) {
         boolean isNotEquals = true;
         if (value > model.getAskNumer()) {
             View.printMessage(View.IT_SMALLER);
