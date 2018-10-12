@@ -1,5 +1,6 @@
 package mvc;
 
+import enums.CompareValues;
 import javafx.util.Pair;
 import util.GameConstants;
 

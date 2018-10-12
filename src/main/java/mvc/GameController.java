@@ -1,5 +1,6 @@
 package mvc;
 
+import enums.CompareValues;
 import util.GameConstants;
 import util.Reader;
 
