@@ -3,8 +3,6 @@ package mvc;
 import util.GameConstants;
 import util.Reader;
 
-import java.util.Random;
-
 public class GameController implements GameConstants {
 
     private Model model;
@@ -17,27 +15,34 @@ public class GameController implements GameConstants {
         View.printMessage(View.START);
         View.printMessage(View.THE_NUMBER_BEFORE + model.getMin() + View.AND + model.getMax());
         View.printMessage(View.RULES);
-        model.setRangeBarrier(RAND_MIN,RAND_MAX);
+        model.setRangeBarrier(RAND_MIN, RAND_MAX);
         model.generateAskNumer();
         gameLoop();
-        View.printMessage(View.CONGRADULATION);
         View.printStatistics(model.getInputs());
     }
 
     private void gameLoop() {
-        while (model.checkValue(getNumberFromUser(model.getMin(),model.getMax())));
-       /* while (model.isNumberNotEqualsAnswer()) {//
+        while (checkValue(getNumberFromUser(model.getMin(), model.getMax()))) {
             View.printStatusBar(model.getMin(), model.getMax(), model.getRange());
-            model.setAnswer(getNumberFromUser(model.getMin(), model.getMax()));
-            if (model.getAnswer() > model.getAskNumer()) {
-                View.printMessage(View.IT_SMALLER);
-                model.setMinOrMax(View.IT_SMALLER);
-            } else if (model.getAnswer() < model.getAskNumer()) {
-                View.printMessage(View.IT_BIGGER);
-                model.setMinOrMax(View.IT_BIGGER);
-            }
         }
-        model.getInputs().add(Integer.toString(model.getAnswer()));*/
+    }
+
+    boolean checkValue(int value) {
+        boolean isNotEquals = true;
+        if (value > model.getAskNumer()) {
+            View.printMessage(View.IT_SMALLER);
+            model.setMax(value);
+            model.addToInputList(CompareValues.LOWER, Integer.toString(value));
+        } else if (value < model.getAskNumer()) {
+            View.printMessage(View.IT_BIGGER);
+            model.setMin(value);
+            model.addToInputList(CompareValues.BIGGER, Integer.toString(value));
+        } else {
+            View.printMessage(View.CONGRADULATION);
+            isNotEquals = false;
+            model.addToInputList(CompareValues.EQUALS, Integer.toString(value));
+        }
+        return isNotEquals;
     }
 
     /**
@@ -58,8 +63,8 @@ public class GameController implements GameConstants {
                     return Integer.parseInt(input);
                 }
             }
-            model.getInputs().add(View.INVALID + input);
-            View.printMessage(View.INVALID_INPUT + min + "-" + max);
+            model.addToInputList(CompareValues.NOT_A_NUMBER, input);
+            View.printMessage(View.INVALID_INPUT + min + View.INVALID + max);
         }
     }
 

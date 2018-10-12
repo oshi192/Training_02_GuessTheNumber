@@ -1,5 +1,6 @@
 package mvc;
 
+import javafx.util.Pair;
 import util.GameConstants;
 
 import java.util.ArrayList;
@@ -10,59 +11,21 @@ class Model implements GameConstants {
     private int min;
     private int max;
     private int range;
-    private int answer;
-    private List<String> inputs = new ArrayList();
+    private List<Pair<String, String>> inputs = new ArrayList();
 
     Model() {
         min = RAND_MIN;
         max = RAND_MAX;
-        answer = 0;
         range = max - min;
     }
 
-    void setRangeBarrier(int min,int max) {
+    void setRangeBarrier(int min, int max) {
         this.min = min;
-        this.max =max;
+        this.max = max;
     }
 
-    boolean isNumberNotEqualsAnswer() {
-        return answer != askNumer;
-    }
-
-    /**
-     * set min or max value depending on the 'value' strings
-     * @param value - string that the answer number higher or less
-     */
-    void setMinOrMax(String value) {
-        if (value.equals(View.IT_SMALLER)) {
-            max = answer;
-            inputs.add(Integer.toString(answer) + View.IT_SMALLER);
-        } else {
-            min = answer;
-            inputs.add(Integer.toString(answer) + View.IT_BIGGER);
-        }
-    }
-    boolean checkValue(int value){
-        boolean isNotEquals = true;
-        if (value > askNumer) {
-            max = value;
-            inputs.add(Integer.toString(answer) + View.IT_SMALLER);
-        } else if (value < askNumer) {
-            min =value ;
-            inputs.add(Integer.toString(answer) + View.IT_BIGGER);
-        } else {
-            isNotEquals = false;
-            inputs.add(Integer.toString(answer));
-        }
-        return isNotEquals;
-    }
-
-    List<String> getInputs() {
+    List<Pair<String, String>> getInputs() {
         return inputs;
-    }
-
-    int getAnswer() {
-        return answer;
     }
 
     int getAskNumer() {
@@ -82,11 +45,19 @@ class Model implements GameConstants {
     }
 
     void generateAskNumer() {
-        askNumer = (int)Math.ceil(Math.random()*
-                (max- min - 1) + min);
+        askNumer = (int) Math.ceil(Math.random() *
+                (max - min - 1) + min);
     }
 
-    void setAnswer(int answer) {
-        this.answer = answer;
+    public void setMax(int max) {
+        this.max = max;
+    }
+
+    public void setMin(int min) {
+        this.min = min;
+    }
+
+    public void addToInputList(CompareValues compareValues, String s) {
+        inputs.add(new Pair<String, String>(s, compareValues.value));
     }
 }
